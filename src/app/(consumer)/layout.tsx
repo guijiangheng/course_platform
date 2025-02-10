@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { getCurrentUser } from "@/services/clerk";
+import { canAccessAdminPages } from "@/permissions/general";
 
 export default function ConsumerLayout({
   children,
@@ -59,7 +61,13 @@ function Navbar() {
   );
 }
 
-function AdminLink() {
+async function AdminLink() {
+  const user = await getCurrentUser();
+
+  if (!canAccessAdminPages(user)) {
+    return null;
+  }
+
   return (
     <Link className="hover:bg-accent/10 flex items-center px-2" href="/admin">
       Admin
