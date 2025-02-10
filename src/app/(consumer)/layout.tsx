@@ -26,6 +26,7 @@ function Navbar() {
           Web Dev Simplified
         </Link>
         <SignedIn>
+          <AdminLink />
           <Link
             className="hover:bg-accent/10 flex items-center px-2"
             href="/courses"
@@ -55,5 +56,13 @@ function Navbar() {
         </SignedOut>
       </nav>
     </header>
+  );
+}
+
+function AdminLink() {
+  return (
+    <Link className="hover:bg-accent/10 flex items-center px-2" href="/admin">
+      Admin
+    </Link>
   );
 }

@@ -10,6 +10,7 @@ export const env = createEnv({
 
     CLERK_SECRET_KEY: z.string().min(1),
     CLERK_WEBHOOK_SECRET: z.string().min(1),
+
   },
   experimental__runtimeEnv: process.env
 })
